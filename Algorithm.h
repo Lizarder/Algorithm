@@ -1,0 +1,14 @@
+#ifndef ALGORITHM_H
+#define ALGORITHM_H
+
+#pragma once
+#pragma execution_character_set("utf-8")
+/*
+description:×ÖµäÐòÈ«ÅÅÁÐ
+Date:2016/03/10
+author:NFX
+*/
+void dictSort(char* src);
+
+void kmp(char* src,char* pattern);
+#endif

@@ -4,6 +4,7 @@
 #include<string>
 #include<algorithm>
 #include "Algorithm.h"
+#include<windows.h>
 using namespace std;
 /*
 求字符串的字典序全排列
@@ -54,13 +55,65 @@ void dictSort(char* src){
 @src：源字符串
 */
 /*========================================================= READY  =============================================================================*/
-void kmp(char* src,char* pattern)
-{
-
-}
-
+//计算next数组
 void calculateNext(int next[], char* pattern)
 {
+	double startTick = GetTickCount();
+	if (pattern == NULL)
+	{
+		return;
+	}
+
+	int len = strlen(pattern);
+	next[0] = 0;
+	int i, k;
+	for (i = 1, k = 0; i < len; i++)
+	{
+		while (k > 0 && pattern[i] != pattern[k])
+		{
+			k = next[k - 1];
+		}
+		if (pattern[i] == pattern[k])
+		{
+			k++;
+		}
+		next[i] = k;
+	}
+	double endTick = GetTickCount();
+	char buff[128] = { 0 };
+	sprintf(buff, "time : %f", endTick);
+	cout << buff;
+}
+
+int kmp(char* src,char* pattern)
+{
+	int patLen = strlen(pattern);
+	int srcLen = strlen(src);
+
+	int* next = (int*)malloc(patLen*sizeof(int));
+	memset(next, 0, patLen*sizeof(int));
+	calculateNext(next,pattern);
+
+	for (int i = 0; i < patLen; i++)
+	{
+		cout << next[i] << " ";
+	}
+
+	for (int s = 0, p = 0; s < srcLen; s++)
+	{
+		while (p>0 && src[s] != pattern[p])
+			p = next[p - 1];
+		if (src[s] == pattern[p])
+		{
+			p++;
+		}
+		if (p == patLen)
+		{
+			cout << "find success";
+			return s - p + 1;
+		}
+	}
 
 }
+
 /*==========================================================  END  =============================================================================*/

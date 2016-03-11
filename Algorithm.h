@@ -10,5 +10,5 @@ author:NFX
 */
 void dictSort(char* src);
 
-void kmp(char* src,char* pattern);
+int kmp(char* src,char* pattern);
 #endif

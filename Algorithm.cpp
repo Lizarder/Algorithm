@@ -113,7 +113,82 @@ int kmp(char* src,char* pattern)
 			return s - p + 1;
 		}
 	}
+	free(next);
+	next = NULL;
 
 }
 
 /*==========================================================  END  =============================================================================*/
+
+/*
+建立二叉排序树BST
+并实现相关操作
+*/
+
+//创建二叉树
+bool createBSTree(BSTreeNode *&root,int value)
+{
+	if (root == NULL)
+	{
+		root = new BSTreeNode;
+		root->data = value;
+		root->left = NULL;
+		root->right = NULL;
+		return true;
+	}
+
+	if (value > root->data)
+	{
+		createBSTree(root->right, value);
+	}
+	else if(value < root->data)
+	{
+		createBSTree(root->left, value);
+	}
+}
+
+//先序遍历(递归)
+void preVisit(BSTreeNode *&root)
+{
+	if (root == NULL)
+	{
+		return;
+	}
+	cout << root->data << "--->";
+	if (root->left != NULL)
+	{
+		preVisit(root->left);
+	}
+	if (root->right != NULL)
+	{
+		preVisit(root->right);
+	}
+}
+
+//中序遍历(递归)
+void midVisit(BSTreeNode *&root)
+{
+	if (root == NULL)
+		return;
+	if (root->left != NULL)
+		midVisit(root->left);
+
+	cout << root->data << "--->";
+
+	if (root->right != NULL)
+		midVisit(root->right);
+}
+
+//后序遍历(递归)
+void postVisit(BSTreeNode *&root)
+{
+	if (root == NULL)
+		return;
+	if (root->left != NULL)
+		postVisit(root->left);
+	
+	if (root->right != NULL)
+		postVisit(root->right);
+
+	cout << root->data << "--->";
+}

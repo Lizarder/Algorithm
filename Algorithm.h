@@ -27,6 +27,7 @@ struct BSTreeNode
 
 bool createBSTree(BSTreeNode *&root, int value);
 void preVisit(BSTreeNode *&root);
-void midVisit(BSTreeNode *&root);
+void inVisit(BSTreeNode *&root);
 void postVisit(BSTreeNode *&root);
+void tranformBSTreeToList(BSTreeNode *&root);
 #endif

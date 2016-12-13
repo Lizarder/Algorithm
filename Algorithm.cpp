@@ -166,17 +166,17 @@ void preVisit(BSTreeNode *&root)
 }
 
 //ÖÐÐò±éÀú(µÝ¹é)
-void midVisit(BSTreeNode *&root)
+void inVisit(BSTreeNode *&root)
 {
 	if (root == NULL)
 		return;
 	if (root->left != NULL)
-		midVisit(root->left);
+		inVisit(root->left);
 
 	cout << root->data << "--->";
 
 	if (root->right != NULL)
-		midVisit(root->right);
+		inVisit(root->right);
 }
 
 //ºóÐò±éÀú(µÝ¹é)
@@ -191,4 +191,12 @@ void postVisit(BSTreeNode *&root)
 		postVisit(root->right);
 
 	cout << root->data << "--->";
+}
+
+//
+BSTreeNode* Head = NULL;
+BSTreeNode* Last
+void tranformBSTreeToList(BSTreeNode *&root)
+{
+
 }
